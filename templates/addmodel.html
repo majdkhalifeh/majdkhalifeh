@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>retrain model</title>
+    <style>
+        body {
+background-color: #212529;
+}
+#submit{
+    background-color: #ffc107;
+    color: whitesmoke;
+    border-radius: 25px;
+    border: 2px solid lightslategray;
+    padding: 20px; 
+    width: 20%;
+    height: 10%;    
+}
+        #speechToText{
+    margin-bottom: 10%;
+    border-radius: 25px;
+    border: 2px solid lightslategray;
+    padding: 20px; 
+    width: 80%;
+    height: 40%;    
+}
+    </style>
+</head>
+<body>
+    <center><h1 style="color:#ffc107;;">Majd Khalifeh Personal Web Server</h1></center>
+    <form method="POST">
+        <center><input  type="text" name="text1" id="speechToText" placeholder="Speak the input again" onclick="record()"></center>
+        <center><input  type="text" name="text2" id="speechToText" placeholder="Speak the right answer" onclick="record()"></center>
+        <center><input  type="text" name="text3" id="speechToText" placeholder="Speak the section" onclick="record()"></center>
+        <center><input type="submit" id = "submit"></center>
+        <script>
+            if ('speechSynthesis' in window) {
+                var synthesis = window.speechSynthesis;
+                console.log('yes');
+                } else {
+                console.log('Text-to-speech not supported.');
+                }
+            function record() {
+                var recognition = new webkitSpeechRecognition();
+                recognition.lang = "en-GB";
+    
+                recognition.onresult = function(event) {
+                    // console.log(event);
+                    document.getElementById('speechToText').value = event.results[0][0].transcript;
+                }
+                recognition.start();
+    
+            }
+        </script>
+        
+    </form>
+</body>
+</html>

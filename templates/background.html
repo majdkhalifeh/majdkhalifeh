@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M.K.P.W.S</title>
+    <style>
+        body {
+background-color: #212529;
+}
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #ffc107;
+  color: white;
+}
+#submit{
+    background-color: #333;
+    color: #f2f2f2;
+    border-radius: 25px;
+    border: 2px solid lightslategray;
+    padding: 20px; 
+    width: 20%;
+    height: 10%;    
+}
+        #speechToText{
+    margin-bottom: 10%;
+    border-radius: 25px;
+    border: 2px solid lightslategray;
+    padding: 20px; 
+    width: 80%;
+    height: 40%;    
+}
+    </style>
+</head>
+<body>
+    <div class="topnav">
+        <a class="active" href="/M.A.K.P.W.S">Home</a>
+        <a href="/M.A.K.P.W.S/retrain">Retrain</a>
+        <a href="#contact">Contact</a>
+        <a href="#about">About</a>
+    </div>
+    <center><h1 style="color:#f2f2f2;;">Majd Khalifeh Personal Web Server</h1></center>
+    <form method="POST" autocomplete="nope">
+        <center><input autocomplete="nope" type="text" name="text" id="speechToText" placeholder="Speak Something" onclick="record()"></center>
+        <center><input autocomplete="nope" type="submit" id = "submit"></center>
+        <center><h1 style="color:#ffc107;">{{content}}</h1></center>
+        <!-- Below is the script for voice recognition and conversion to text-->
+        <script>
+            if ('speechSynthesis' in window) {
+                var synthesis = window.speechSynthesis;
+                console.log('yes');
+                } else {
+                console.log('Text-to-speech not supported.');
+                }
+            function record() {
+                var recognition = new webkitSpeechRecognition();
+                recognition.lang = "en-GB";
+    
+                recognition.onresult = function(event) {
+                    // console.log(event);
+                    document.getElementById('speechToText').value = event.results[0][0].transcript;
+                }
+                recognition.start();
+    
+            }
+        </script>
+    </form>
+</body>
+</html>
